@@ -21,7 +21,6 @@ export default {
 <style>
 #card {
   cursor: pointer;
-  float: left;
   margin-top: 0;
   margin-right: 0;
 }
