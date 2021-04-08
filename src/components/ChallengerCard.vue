@@ -8,7 +8,15 @@
     </div>
 
     <div id="content">
-      {{ player.wins }} mal gewonnen
+      <div class="icon-text-pair" style="float: left;">
+        <div class="material-icons-outlined centerVertically">emoji_events</div>
+        {{ player.wins }}
+      </div>
+
+      <div class="icon-text-pair">
+        <div class="material-icons-outlined centerVertically">view_list</div>
+        {{ player.reputationPoints }}
+      </div>
     </div>
   </div>
 </template>
@@ -63,5 +71,10 @@ export default {
   border: 2px solid #807d7d;
   border-radius: 100%;
   margin-right: 12px;
+}
+
+.icon-text-pair {
+  position: relative;
+  height: 32px;
 }
 </style>
