@@ -4,7 +4,7 @@
       <img src="../assets/logo.png" :alt="player.username"
            class="profilePicture centerVertically img-fluid w-25 h-25"
            id="userIcon">
-      <h2 class="card-title centerVertically">{{ nameWithAdjustedLength(player.username) }}</h2>
+      <h2 class="card-title centerVertically text-truncate">{{ player.username }}</h2>
     </div>
 
     <div id="content">
