@@ -1,14 +1,21 @@
 <template>
   <div id="app">
-    <button class="btn" type="button" @click="halfmoon.toggleDarkMode()">Toggle Dark Mode</button>
-    <router-view/>
+    <NavBar/>
+
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+      <br><br><br><br>
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
 import { halfmoon } from './main'
+import NavBar from "@/components/NavBar";
 
 export default {
+  components: {NavBar},
   mounted() {
     halfmoon.onDOMContentLoaded();
   },

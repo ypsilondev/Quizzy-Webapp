@@ -1,15 +1,13 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <img alt="Vue logo" src="../assets/logo.png">
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Home',
-  components: {
-
-  }
-}
+});
 </script>
