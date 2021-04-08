@@ -2,16 +2,9 @@
   <div class="page-wrapper with-navbar">
     <!-- Navbar (immediate child of the page wrapper) -->
     <nav class="navbar">
-      <!-- Navbar content (with toggle sidebar button) -->
-      <div class="navbar-content">
-        <button class="btn btn-action" type="button">
-          <i class="fa fa-bars" aria-hidden="true"></i>
-          <span class="sr-only">Toggle sidebar</span> <!-- sr-only = show only on screen readers -->
-        </button>
-      </div>
       <!-- Navbar brand -->
       <a href="#" class="navbar-brand">
-        <img src="" alt="">
+        <img src="../assets/logo.png" alt="">
         {{ appName }}
       </a>
       <!-- Navbar nav -->
