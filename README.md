@@ -1,4 +1,4 @@
-# quizzy-frontend
+# Quizzy-WebApp
 
 ## Project setup
 ```
