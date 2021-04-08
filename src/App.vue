@@ -1,12 +1,8 @@
 <template>
   <div id="app">
     <NavBar/>
-
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
-      <br><br><br><br>
-      <router-view/>
-    </div>
+    <br><br>
+    <router-view/>
   </div>
 </template>
 
