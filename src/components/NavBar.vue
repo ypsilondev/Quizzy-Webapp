@@ -2,7 +2,7 @@
   <!-- Navbar (immediate child of the page wrapper) -->
   <nav class="navbar">
     <!-- Navbar brand -->
-    <a href="#" class="navbar-brand">
+    <a href="/" class="navbar-brand">
       <img src="../assets/logo.png" alt="">
       {{ appName }}
     </a>
