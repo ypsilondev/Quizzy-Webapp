@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <NavBar/>
-    <br><br>
+    <router-view name="NavBar"></router-view>
     <router-view/>
   </div>
 </template>
 
 <script>
 import { halfmoon } from './main'
-import NavBar from "@/components/NavBar";
 
 export default {
-  components: {NavBar},
   mounted() {
     halfmoon.onDOMContentLoaded();
   },
