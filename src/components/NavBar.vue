@@ -47,7 +47,7 @@ export default {
 
   data() {
     return {
-      appName: Util.dercooleAppName
+      appName: Util.APP_NAME
     }
   }
 }
