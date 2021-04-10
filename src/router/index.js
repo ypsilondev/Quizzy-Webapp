@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import Login from "@/views/Login";
 import NavBar from "@/components/NavBar";
 
 const routes = [
@@ -10,6 +11,11 @@ const routes = [
       default: Home,
       NavBar
     }
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
   }
 ]
 
