@@ -86,7 +86,7 @@ export default {
     },
 
     routeLogin() {
-      router.route("/login");
+      router.push({ name: 'Login' });
     }
   }
 }

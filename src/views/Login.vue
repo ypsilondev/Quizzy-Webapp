@@ -71,8 +71,7 @@ export default {
     },
 
     routeCreateAccount() {
-      // todo: Fix routing - implement in HTML directly?
-      router.route("/register");
+      router.push({ name: 'Register' });
     }
   }
 }
