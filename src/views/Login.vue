@@ -1,36 +1,41 @@
 <template>
-  <div>
-    <img src="../assets/logo.png" alt="Quizzy-Logo">
-
-    <form class="w-400 mw-full">
-      <div class="form-group">
-        <label for="username" class="required">Benutzername</label>
-        <input type="text" class="form-control" id="username" placeholder="Benutzername" required="required"
-          v-model="usernameModel">
+  <div style="display: flex; justify-content: center">
+    <div class="card">
+      <div class="text-center">
+        <img src="../assets/logo.png" alt="Quizzy-Logo">
       </div>
 
-      <div class="form-group">
-        <label for="password" class="required">Passwort</label>
-        <input type="password" class="form-control" id="password" placeholder="Passwort" required="required"
-          v-model="passwordModel">
-        <div class="form-text">
-          Mindestens 4 Zeichen.
+      <h2 class="card-title text-center">Anmelden</h2>
+
+      <form class="w-400">
+        <div class="form-group">
+          <label for="username" class="required">Benutzername</label>
+          <input type="text" class="form-control" id="username" placeholder="Benutzername" required="required"
+            v-model="usernameModel">
         </div>
-      </div>
 
-      <div class="form-group">
-        <div class="custom-checkbox">
-          <input type="checkbox" id="remember" v-model="rememberModel">
-          <label for="remember">Angemeldet bleiben</label>
+        <div class="form-group">
+          <label for="password" class="required">Passwort</label>
+          <input type="password" class="form-control" id="password" placeholder="Passwort" required="required"
+            v-model="passwordModel">
+          <div class="form-text">
+            Mindestens 4 Zeichen.
+          </div>
         </div>
-      </div>
 
-      <input class="btn btn-primary" type="submit" value="Anmelden" @click="executeLogIn">
-    </form>
+        <div class="form-group">
+          <div class="custom-checkbox">
+            <input type="checkbox" id="remember" v-model="rememberModel">
+            <label for="remember">Angemeldet bleiben</label>
+          </div>
+        </div>
 
-    <br>
-
-    <button class="btn" type="button" @click="routeCreateAccount()">Account erstellen</button>
+        <div class="form-group text-right">
+          <button class="btn mr-15" type="button" @click="routeCreateAccount()">Account erstellen</button>
+          <input class="btn btn-primary" type="submit" value="Anmelden" @click="executeLogIn">
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -74,9 +79,4 @@ export default {
 </script>
 
 <style>
-form {
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
-}
 </style>

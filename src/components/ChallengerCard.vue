@@ -4,7 +4,7 @@
          class="img-fluid rounded-top"
          id="userIcon">
 
-    <div class="content" id="content">
+    <div class="content text-center" id="content">
       <h2 class="card-title text-truncate">{{ player.username }}</h2>
       <div>
         <span class="badge">
