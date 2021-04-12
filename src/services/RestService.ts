@@ -1,3 +1,5 @@
+import {User} from "@/types/User";
+
 export class RestService {
 
     private static API_HOST = "https://api.host"
@@ -17,6 +19,7 @@ export class RestService {
      * @param username  Display name of user
      * @param email     E-Mail address of user
      * @param password  Password of user
+     * @return User     User object
      */
     static loginUser(username: string, email: string, password: string){
         this.sendRequest("/users/authenticate/", "POST", {
@@ -25,10 +28,12 @@ export class RestService {
             password: password
         }).then(response => {
             if(response.status == 200){
-                return true;
+                response.json().then(json => {
+                    const user: User = json;
+                    return user;
+                })
             }else if(response.status == 400){
-                //TODO: maybe more detailed errors
-                return false;
+                return null;
             }
         });
     }
@@ -55,7 +60,7 @@ export class RestService {
      * @param email         E-Mail address of user
      * @param password      Password of user
      * @param profileImage  Id of profile image
-     * @return boolean  If action was successful
+     * @return User         User object
      */
     static registerUser(username: string, email: string, password: string, profileImage: string){
         this.sendRequest("/users/register/", "POST", {
@@ -65,10 +70,12 @@ export class RestService {
             profileImage: profileImage
         }).then(response => {
             if(response.status == 200){
-                return true;
+                response.json().then(json => {
+                    const user: User = json;
+                    return user;
+                })
             }else if(response.status == 400){
-                //TODO: maybe more detailed errors
-                return false;
+                return null;
             }
         });
     }
