@@ -20,9 +20,12 @@
             v-model="usernameModel">
         </div>
         <div class="form-group">
-          <label for="password" class="required">Password (min 4. Zeichen)</label>
+          <label for="password" class="required">Password</label>
           <input type="password" class="form-control" id="password" placeholder="Password" required="required"
             v-model="passwordModel">
+          <div class="form-text">
+            Mindestens 4 Zeichen.
+          </div>
         </div>
         <div class="form-group">
           <label for="confirm-password" class="required">Confirm password</label>
