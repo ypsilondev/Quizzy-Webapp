@@ -4,7 +4,7 @@ export class RestService {
 
     private static API_HOST = "https://quiz.shirkanesi.com"
 
-    private static sendRequest(url: string, methode: string, data: object){
+    private static sendRequest(url: string, methode: string, data: object) {
         return fetch(this.API_HOST + url, {
             method: methode,
             headers: {
@@ -16,42 +16,36 @@ export class RestService {
 
     /**
      * Login of a user
-     * @param username  Display name of user
-     * @param email     E-Mail address of user
+     * @param username  User name of user
      * @param password  Password of user
-     * @return User     User object
+     * @return User     User object or null if login was not successful
      */
-    static loginUser(username: string, email: string, password: string){
-        this.sendRequest("/users/authenticate/", "POST", {
-            displayName: username,
-            email: email,
+    static async loginUser(username: string, password: string) {
+        const response = await this.sendRequest("/users/authenticate/", "POST", {
+            loginName: username,
             password: password
-        }).then(response => {
-            if(response.status == 200){
-                response.json().then(json => {
-                    const user: User = json;
-                    return user;
-                })
-            }else if(response.status == 400){
-                return null;
-            }
         });
+        if(response.status == 200){
+            const json = await response.json();
+            const user: User = json.user;
+            return user;
+        }else if(response.status == 400){
+            return null;
+        }
     }
 
     /**
      * Checks whether the user is logged in
      * @return boolean  If action was successful
      */
-    static isLogin(){
-        this.sendRequest("/users/logincheck/", "GET", {
-        }).then(response => {
-            if(response.status == 200){
-                return true;
-            }else if(response.status == 400){
-                //TODO: maybe more detailed errors
-                return false;
-            }
-        });
+    static async isLogin() {
+        const response = await this.sendRequest("/users/logincheck/", "GET", {});
+        if (response.status == 200) {
+            return true;
+        } else if (response.status == 400) {
+            //TODO: maybe more detailed errors
+            return false;
+        }
     }
 
     /**
@@ -62,54 +56,49 @@ export class RestService {
      * @param profileImage  Id of profile image
      * @return User         User object
      */
-    static registerUser(username: string, email: string, password: string, profileImage: string){
-        this.sendRequest("/users/register/", "POST", {
+    static async registerUser(username: string, email: string, password: string, profileImage: string) {
+        const response = await this.sendRequest("/users/register/", "POST", {
             displayName: username,
             email: email,
             password: password,
             profileImage: profileImage
-        }).then(response => {
-            if(response.status == 200){
-                response.json().then(json => {
-                    const user: User = json;
-                    return user;
-                })
-            }else if(response.status == 400){
-                return null;
-            }
         });
+        if(response.status == 200){
+            response.json().then(json => {
+                const user: User = json;
+                return user;
+            })
+        }else if(response.status == 400){
+            return null;
+        }
     }
 
     /**
      * Revokes all current session-tokens of the user
      * @return boolean  If action was successful
      */
-    static revokeAllTokens(){
-        this.sendRequest("/users/security/revokeAllTokens/", "POST", {
-        }).then(response => {
-            if(response.status == 200){
-                return true;
-            }else if(response.status == 400){
-                //TODO: maybe more detailed errors
-                return false;
-            }
-        })
+    static async revokeAllTokens() {
+        const response = await this.sendRequest("/users/security/revokeAllTokens/", "POST", {});
+        if(response.status == 200){
+            return true;
+        }else if(response.status == 400){
+            //TODO: maybe more detailed errors
+            return false;
+        }
     }
 
     /**
      * Revokes the current session-tokens of the user [in the current browser]
      * @return boolean  If action was successful
      */
-    static revokeTokens(){
-        this.sendRequest("/users/security/revokeTokens/", "POST", {
-        }).then(response => {
-            if(response.status == 200){
-                return true;
-            }else if(response.status == 400){
-                //TODO: maybe more detailed errors
-                return false;
-            }
-        })
+    static async revokeTokens() {
+        const response = await this.sendRequest("/users/security/revokeTokens/", "POST", {});
+        if(response.status == 200){
+            return true;
+        }else if(response.status == 400){
+            //TODO: maybe more detailed errors
+            return false;
+        }
     }
 
     /**
@@ -117,16 +106,14 @@ export class RestService {
      * @param verificationNumber    The 6-digit number the user received via e-mail
      * @return boolean              If verification was successful
      */
-    static verifyEMail(verificationNumber: number){
-        this.sendRequest("/users/security/verify/" + verificationNumber, "GET", {
-        }).then(response => {
-            if(response.status == 200){
-                return true;
-            }else if(response.status == 400){
-                //TODO: maybe more detailed errors
-                return false;
-            }
-        });
+    static async verifyEMail(verificationNumber: number) {
+        const response = await this.sendRequest("/users/security/verify/" + verificationNumber, "GET", {});
+        if(response.status == 200){
+            return true;
+        }else if(response.status == 400){
+            //TODO: maybe more detailed errors
+            return false;
+        }
     }
 
 }
