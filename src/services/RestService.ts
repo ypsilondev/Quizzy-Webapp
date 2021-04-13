@@ -2,7 +2,7 @@ import {User} from "@/types/User";
 
 export class RestService {
 
-    private static API_HOST = "https://api.host"
+    private static API_HOST = "https://quiz.shirkanesi.com"
 
     private static sendRequest(url: string, methode: string, data: object){
         return fetch(this.API_HOST + url, {
