@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from "@/views/Login";
 import NavBar from "@/components/NavBar";
 import Register from "@/views/Register";
+import Logout from "@/views/Logout";
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     path: "/register",
     name: "Register",
     component: Register
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   }
 ]
 
