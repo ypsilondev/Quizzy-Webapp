@@ -5,13 +5,22 @@ export class RestService {
     private static API_HOST = "https://quiz.shirkanesi.com"
 
     private static sendRequest(url: string, methode: string, data: object) {
-        return fetch(this.API_HOST + url, {
-            method: methode,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        if (Object.keys(data).length > 0) {
+            return fetch(this.API_HOST + url, {
+                method: methode,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        }else{
+            return fetch(this.API_HOST + url, {
+                method: methode,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
     }
 
     /**
@@ -43,7 +52,6 @@ export class RestService {
         if (response.status == 200) {
             return true;
         } else if (response.status == 400) {
-            //TODO: maybe more detailed errors
             return false;
         }
     }
