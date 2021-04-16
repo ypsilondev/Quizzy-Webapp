@@ -96,11 +96,11 @@ export class RestService {
     }
 
     /**
-     * Revokes the current session-tokens of the user [in the current browser]
+     * Revokes the current session-token of the user [in the current browser]
      * @return boolean  If action was successful
      */
-    static async revokeTokens() {
-        const response = await this.sendRequest("/users/security/revokeTokens/", "POST", {});
+    static async revokeToken() {
+        const response = await this.sendRequest("/users/security/revokeToken/", "POST", {});
         if(response.status == 200){
             return true;
         }else if(response.status == 400){

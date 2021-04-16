@@ -13,7 +13,7 @@ export default {
   mounted() {
     RestService.isLogin().then(isLogin => {
       if (isLogin) {
-        RestService.revokeTokens().then(success => {
+        RestService.revokeToken().then(success => {
           document.getElementById('logout-text').innerText = success ? 'Logout successful' : 'Logout failed';
           setTimeout(() => {
             router.push({ name: 'Home' });
