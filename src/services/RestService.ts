@@ -8,6 +8,7 @@ export class RestService {
         if (Object.keys(data).length > 0) {
             return fetch(this.API_HOST + url, {
                 method: methode,
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -16,6 +17,7 @@ export class RestService {
         }else{
             return fetch(this.API_HOST + url, {
                 method: methode,
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 }
