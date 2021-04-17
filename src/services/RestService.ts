@@ -2,8 +2,8 @@ export class RestService {
 
     private static API_HOST = "https://quiz.shirkanesi.com"
 
-    private static sendRequest(url: string, method: string, data: object) {
-        if (Object.keys(data).length > 0) {
+    private static sendRequest(url: string, method: string, data?: object) {
+        if (data !== undefined) {
             return fetch(this.API_HOST + url, {
                 method: method,
                 credentials: 'include',
@@ -29,7 +29,7 @@ export class RestService {
      * @param password  Password of user
      * @return User     User object or null if login was not successful
      */
-    static async loginUser(username: string, password: string) : Promise<User | null> {
+    static async loginUser(username: string, password: string) : Promise<User | undefined> {
         const response = await this.sendRequest("/users/authenticate/", "POST", {
             loginName: username,
             password: password
@@ -38,7 +38,7 @@ export class RestService {
             const json = await response.json();
             return json.user;
         }
-        return null;
+        return undefined;
     }
 
     /**
@@ -46,7 +46,7 @@ export class RestService {
      * @return boolean  If action was successful
      */
     static async isLogin() : Promise<Boolean> {
-        const response = await this.sendRequest("/users/logincheck/", "GET", {});
+        const response = await this.sendRequest("/users/logincheck/", "GET");
         return response.status == 200;
     }
 
@@ -58,7 +58,7 @@ export class RestService {
      * @param profileImage  Id of profile image
      * @return User         User object
      */
-    static async registerUser(username: string, email: string, password: string, profileImage: string) : Promise<User | null> {
+    static async registerUser(username: string, email: string, password: string, profileImage: string) : Promise<User | undefined> {
         const response = await this.sendRequest("/users/register/", "POST", {
             displayName: username,
             email: email,
@@ -69,7 +69,7 @@ export class RestService {
             const json = await response.json();
             return json.user;
         }
-        return null;
+        return undefined;
     }
 
     /**
@@ -77,7 +77,7 @@ export class RestService {
      * @return boolean  If action was successful
      */
     static async revokeAllTokens() : Promise<Boolean> {
-        const response = await this.sendRequest("/users/security/revokeAllTokens/", "POST", {});
+        const response = await this.sendRequest("/users/security/revokeAllTokens/", "POST");
         return response.status == 200;
     }
 
@@ -86,7 +86,7 @@ export class RestService {
      * @return boolean  If action was successful
      */
     static async revokeToken() : Promise<Boolean> {
-        const response = await this.sendRequest("/users/security/revokeToken/", "POST", {});
+        const response = await this.sendRequest("/users/security/revokeToken/", "POST");
         return response.status == 200;
     }
 
@@ -96,7 +96,7 @@ export class RestService {
      * @return boolean              If verification was successful
      */
     static async verifyEMail(verificationNumber: number) : Promise<Boolean> {
-        const response = await this.sendRequest("/users/security/verify/" + verificationNumber, "GET", {});
+        const response = await this.sendRequest("/users/security/verify/" + verificationNumber, "GET");
         return response.status == 200;
     }
 
