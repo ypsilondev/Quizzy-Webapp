@@ -8,6 +8,10 @@
       <h2 class="card-title text-center">Anmelden</h2>
 
       <form class="w-400">
+        <div class="invalid-feedback hidden" id="invalid-login">
+          Falscher Benutzername oder Password. Bitte versuche es erneut.
+        </div>
+
         <div class="form-group">
           <label for="username" class="required">Benutzername</label>
           <input type="text" class="form-control" id="username" placeholder="Benutzername" required="required"
@@ -41,6 +45,7 @@
 
 <script>
 import router from "@/router";
+import {RestService} from "@/services/RestService.ts";
 
 export default {
   data() {
@@ -52,7 +57,7 @@ export default {
   },
 
   methods: {
-    executeLogIn(event) {
+    async executeLogIn(event) {
       event.preventDefault();
 
       if (this.usernameModel.trim().length === 0) {
@@ -67,7 +72,14 @@ export default {
         document.getElementById("password").classList.remove("is-invalid");
       }
 
-      // todo: Send login-request
+      let user = await RestService.loginUser(this.usernameModel, this.passwordModel);
+      //TODO: Store user object
+      if(user == null){
+        document.getElementById("invalid-login").classList.remove("hidden");
+      }else{
+        document.getElementById("invalid-login").classList.add("hidden");
+        await router.push({ name: 'Home' })
+      }
     },
 
     routeCreateAccount() {
@@ -78,4 +90,7 @@ export default {
 </script>
 
 <style>
+.hidden {
+  display: none;
+}
 </style>
